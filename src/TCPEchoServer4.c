@@ -47,10 +47,10 @@ int main(int argc, char *argv[]) {
     // Client address
     struct sockaddr_in clntAddr;
     // Set length of client address structure (in-out parameter)
-    socklen_t clntAddrLne = sizeof(clntAddr);
+    socklen_t clntAddrLen = sizeof(clntAddr);
 
     // Wait for a client to connect
-    int clntSock = accept(servSock, (struct sockaddr *)&clntAddr, &clntAddrLne);
+    int clntSock = accept(servSock, (struct sockaddr *)&clntAddr, &clntAddrLen);
     if (clntSock < 0) {
       DieWithSystemMessage("accept() failed");
     }
