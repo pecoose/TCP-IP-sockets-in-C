@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
   if (numBytes < 0) {
     DieWithSystemMessage("send() failed");
   } else if (numBytes != echoStringLen) {
-    DieWithUserMessage("send(), sent unexpected number of bytes");
+    DieWithUserMessage("send() failed", "sent unexpected number of bytes");
   }
   // Receive the same string back from the server
   // Count of total bytes received

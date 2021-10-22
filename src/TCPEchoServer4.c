@@ -57,8 +57,8 @@ int main(int argc, char *argv[]) {
     // ClntSock is connected to a client!
     // String to contain client address
     char clntName[INET_ADDRSTRLEN];
-    if (inet_ntop(AF_INET, &clntAddr.sin_addr.s_addr, clntName),
-        sizeof(clntName) != NULL) {
+    if (inet_ntop(AF_INET, &clntAddr.sin_addr.s_addr, clntName,
+                  sizeof(clntName)) != NULL) {
       printf("Handling client %s/%d\n", clntName, ntohs(clntAddr.sin_port));
     } else {
       puts("Unable to get client address");
