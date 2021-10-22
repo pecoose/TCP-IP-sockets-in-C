@@ -2,10 +2,12 @@ CC := cc
 C_FLAGS := -Wall 
 C_FLAGS += -Werror 
 INCLUDE_DIR := -I src 
-SRC_DIR := src
 
-SERVER_PROG := TCPEchoServer4
-CLIENT_PROG := TCPEchoClient4
+DEPS_SRC_DIR := src
+SRC_DIR := exercises
+
+SERVER_PROG := TCPEchoServerWithServerFirst
+CLIENT_PROG := TCPEchoClientWithServerFirst
 
 SERVER_SRC := ${SRC_DIR}/${SERVER_PROG}.c
 CLIENT_SRC := ${SRC_DIR}/${CLIENT_PROG}.c 
@@ -13,9 +15,9 @@ CLIENT_SRC := ${SRC_DIR}/${CLIENT_PROG}.c
 SERVER_OBJ := $(patsubst %.c, %.o, ${SERVER_SRC})
 CLIENT_OBJ := $(patsubst %.c, %.o, ${CLIENT_SRC})
 
-DEPS_SRC := ${SRC_DIR}/AddressUtility.c \
-						${SRC_DIR}/DieWithMessage.c \
-						${SRC_DIR}/TCPServerUtility.c 
+DEPS_SRC := ${DEPS_SRC_DIR}/AddressUtility.c \
+						${DEPS_SRC_DIR}/DieWithMessage.c \
+						${DEPS_SRC_DIR}/TCPServerUtility.c 
 
 DEPS_OBJ := $(patsubst %.c, %.o, ${DEPS_SRC})
 
@@ -39,4 +41,4 @@ ${DEPS_OBJ} : %.o:%.c
 	$(CC) $(INCLUDE_DIR) $(C_FLAGS) -c $^ -o $@
 
 clean : 
-	rm $(SRC_DIR)/*.o ${CLIENT_PROG} ${SERVER_PROG}
+	rm $(SRC_DIR)/*.o $(DEPS_SRC_DIR)/*.o ${CLIENT_PROG} ${SERVER_PROG}
